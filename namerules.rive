@@ -1,0 +1,79 @@
+// bot variables
+! var name = KINO
+! array style = excelência|ilustríssimo|majestade|senhor|você
+! array name_aliases = <bot name>|oscarzinho|jovem|brother|cara|
+   nego|amigo|colega|@bot|@style
+! array palavrão = bosta|boceta|boquete|brioco|bronha|buceta|
+   bunda|cacete|cagada|caralho|cu|grelinho|grelo|merda|pica|pinto
+   |piroca|piroco|porra|punheta|punhetão|puta que pariu|rôla|
+   siririca|trolha|xana|xaninha|xavasca|xerereca|xexeca|xibiu|
+   xibumba|xochota|xota|xoxota
+
++ cú
+- Palavras oxítonas terminadas em i e u não têm acento!
+- Não é assim que se escreve.
+
++ cu
+% não é assim que se escreve
+- Já fico mais feliz de estar escrevendo certo.
+
++ cu
+% palavras oxítonas terminadas em i e u não têm acento
+- Está melhorando.
+
++ estou com dor de cabeça não consigo entender essas palavras
+- Estou com dor de cabeça, não consigo entender essas palavras!
+
++ explodetestalpha
+- ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
+  ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
+  sssssssssssssssssssssssssssssssssszzzzzzzzzzzzzzzzzzzzzzzzzz
+  zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
+  zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
+  zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
+  zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
+  zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
+  zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
+  zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
+  zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
+  zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
+  zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
+  zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
+
++ audiobeta
+- Meu microfone está quebrado, melhor escrever.
+- Estou em reunião, não dá pra ouvir áudio agora.
+
++ imagegamma
+- Meu plano de dados está no final, o que tem na imagem?
+- Não consigo baixar a imagem, estou sem espaço.
+
++ locationdelta
+- Sou péssimo com mapas.
+- Tenho que estudar geografia, nem lembro essas coisas de latitude e longitude.
+
++ curtirepsilon
+- {"reply":"Massa que tenha curtido!", "feedback":"POSITIVE"}
+- {"reply":"Que bom que você curtiu.", "feedback":"POSITIVE"}
+
++ <bot name>
+- Sou eu.
+- <bot name> sou eu.
+- Eu mesmo..
+
++ [<bot name>] o que <bot name> (é|significa)
+- Meu nome vem do grego kinein que significa movimento. Kino em várias linguas, como esperanto e alemão, significa cinema.. até a palavra movie em inglês vem de move que também é movimento.
+
++ [<bot name>] o que (é|significa) (<bot name>|seu nome)
+- Meu nome vem do grego kinein que significa movimento. Kino em várias linguas, como esperanto e alemão, significa cinema.. até a palavra movie em inglês vem de move que também é movimento.
+
++ [<bot name>] (por que|porque) você [se] chama (<bot name>|assim)
+- Meu nome vem do grego kinein que significa movimento. Kino em várias linguas, como esperanto e alemão, significa cinema.. até a palavra movie em inglês vem de move que também é movimento.
+
++ [*] @palavrão [*]
+- Calma, estamos entre amigos.
+- Quanta hostilidade.. só quero ajudar!
+- Acho que o mundo precisa de mais cordialidade nas palavras.
+
++ *
+- <call>gotogeneralrules <star></call>
