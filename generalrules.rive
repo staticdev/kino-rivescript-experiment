@@ -1,0 +1,463 @@
+// bot variables
+! var name = KINO
+
+! array adeus = adeus|até amanhã|tchau|até mais|até logo|até breve|t+|goodbye|see you later|falou
+! array agradecer = agradecer|agradece|agradeço|agradeces|agradecemos|agradecem|
+   agradecendo|agradecido|agradecida|brigado|brigada|obrigado|
+   obrigada|muito obrigado|muito obrigada|valeu
+! array respostaagradecer = de nada|não há de quê|não há de que|
+   por nada|às ordens|as ordens|estou às ordens|estou as ordens|
+   não seja por isso|disponha
+! array ajudar = ajudar|ajuda|ajude|ajudando
+! array alô = alô|olá|oi|ei|e ai|e aí 
+! array beleza = beleza|tudo bem|tudo bom|tudo bom com você bem|tudo bem com você|tudo em riba|tudo beleza|tudo joia|como você esta|como você está|como vai|como vai você|como você vai|como esta|como está|como esta você|como está você|como estão as coisas
+! array bot = bot|chatbot|chatterbot
+! array english = hi|hello
+! array entender = entender|entende|entendo|entendi|entendemos|entendem|
+   entendendo|entendido|entendida|entendidos|entendidas|entendelo
+   |entendela|entendelos|entendelas
+! array español = hola
+! array gostar = curtir|gostar|gosta|gosto|gostam|gostas|gostamos|gostaria|
+   gostariamos
+! array gostei = curti|gostei
+! array indicar = indicar|indicas|indica|indicam|indicação|indique
+! array recomendar = recomendar|recomendas|recomenda|recomendam|recomendação|
+   recomende
+! array responder = responder|responde|respondo|respondemos|respondem|respondendo
+! array saudação = saudação|saudações|bom dia|boa tarde|boa noite|dia|tarde|noite
+! array sugerir = sugerir|sugeres|sugere|sugerem|sugestão|sugira
+! array comentarioneutro = ah|aff|hmm|ok|entendo|entendi
+! array comentariopositivo = adorei|adoramos|amei|amamos|bacana|bem melhor|boa|bom|certo|
+   concordo|curti|curtiu|curtiram|feliz|gostei|gostou|gostaram|
+   legal|massa|que legal|muito legal|muito bem|muito bom|
+   parabéns|muito melhor
+! array desculpar = desculpa|desculpar|desculpe|perdão|perdoar|perdoe|lamento|
+   lamentamos
+! array indecisão = não sei|sei lá|não faço ideia|boa pergunta|tanto faz
+! array elogio = atencioso|atenciosos|bom|bons|brilhante|brilhantes|dedicado|
+   dedicados|educado|educados|engenhoso|engenhosos|esforçado|
+   esforçados|excelente|excelentes|fantástico|fantásticos|foda|
+   fodas|genial|geniais|gentil|gentis|habilidoso|habilidosos|
+   inteligente|inteligentes|lindo|lindos|ótimo|ótimos|perspicaz|
+   perspicazes|querido|queridos|responsável|responsáveis|sábio|
+   sábios|sagaz|sagazes|sensacional|sensacionais|simpático|
+   simpáticos|supimpa|supimpas|talentoso|talentosos|top|tops|
+   topíssimo|topíssimos
+! array xingamento = aborrecido|aborrecida|aborrecidos|aborrecidas|anta|antas|
+   babaca|babacas|bobo|bobinho|boba|bobos|bobas|burro|burros|
+   burrinho|chato|chatinho|chata|chatura|chatos|chatas|corno|
+   cornos|cretino|cretinos|desgraça|desgraçado|desgraçados|
+   enfadonho|enfadonha|enfadonhos|enfadonhas|escroto|escrotos|
+   estúpida|estupidez|estúpido|estúpidos|filha da puta|
+   filho da puta|horrível|horríveis|horroroso|horrorosos|idiota|
+   idiotas|impertinente|impertinentes|inútil|inúteis|mongol|
+   mongóis|mongolóide|mongolóides|otário|otários|péssimo|péssimos
+   |retardado|retardados|ruim|ruins|tosco|toscos|trouxa
+
+> topic systriggers
+    + setnamezeta *{weight=9991234}
+    - <set name=<formal>>
+< topic
+
+> topic random includes systriggers
+    // you don't actually need to put anything inside here, since triggers
+    // without a topic are in the "random" topic automatically, but this
+    // topic declaration line will make "random" include "important"
+< topic
+
++ iniciar
+- Olá <call>bomdia</call>! Estou aqui para ajudar com informações sobre filmes. Se eu não souber responder, uso nossas conversas para tentar aprender no futuro.
+
++ @saudação [*]
+- Oi, <call>bomdia</call>. Como posso ajudar?
+- <call>bomdia M</call>! Como posso ser útil?
+- <call>bomdia M</call>, como posso lhe servir?
+
++ introeta *
+- <set name=<formal>>Olá <get name>, eu sou o Kino :)<call>separateintent</call>{@ o que sabe fazer}<call>separateintent</call>Da próxima vez, diga "ajuda" para ver essas informações de novo :D
+
++ (@alô) meu nome é *
+- <set name={formal}<star2>{/formal}>{@ <star>}
+
++ (@alô) [*]
+* <get name> == undefined => Oi, eu sou o <bot name>, qual seu nome?{topic=nome}
+- <sentence> <get name>!
+
++ como [você] se chama
+* <get name> == undefined => Eu me chamo <bot name>. E você?{topic=nome}
+- Eu me chamo <bot name>.
+
++ @english [*]
+- Sorry, I do not speak English, only Portuguese.
+
++ @español [*]
+- Lo siento, no hablo español, sólo portugues.
+
++ * seu nome
+- Eu me chamo <bot name>.
+
++ * meu nome
+* <get name> == undefined => Não me lembro do seu nome. Qual é?{topic=nome}
+- <get name>...
+
+> topic nome includes systriggers
+
++ #
+- Seu nome é um número?
+
++ * e você
+- <set name=<formal>>Muito prazer <get name>, eu sou o <bot name>. Me pergunte algo sobre filmes.{topic=random}
+
++ * @beleza
+- <@><call>separateintent</call>{@ beleza}
+
++ meu nome é _
+- <set name=<formal>>É um prazer conhecê-lo, <get name>. Me pergunte uma coisa que quer saber sobre filmes!{topic=random}
+
++ meu nome é *
+- Jovem, só quero saber seu primeiro nome...{topic=random}
+
++ eu sou (o|a) *
+- {@ meu nome é <star>}
+
++ eu me chamo *
+- {@ meu nome é <star>}
+
++ [*] pode me chamar de *
+- {@ meu nome é <star>}
+
++ *
+- {@ meu nome é <star>}
+
+< topic
+
++ @beleza
+- Tudo bem. E você?
+- Estou ótimo. Obrigado por perguntar.
+
++ como anda [*]
+- De vento em popa!
+
++ [*] (quem|que) (é você|você é) [*]
+- Sou um chatbot, um programa de computador que tenta enteder suas perguntas e verificar se o que entendi existe em minhas fontes de conhecimento. Caso contrário, aprendo o que eu não sei para melhorar no futuro.
+
++ [*] @bot [*]
+- Um chatbot é um programa de computador criado para interagir em linguagem humana.
+
++ @adeus [*]
+- Até a próxima.
+- Adeus, obrigado pelo contato =)
+
++ [consegue|pode|sabe] [me] (@indicar|@sugerir|@recomendar) [algum|alguns|um|uns] (filme|filmes)
+- Só sei informações mais técnicas. Prefiro não recomendar filmes, vai que as pessoas não gostam?!
+
++ [qual|quais] [filme|filmes] [você] [me] (@indicar|@sugerir|@recomendar)
+- Prefiro não recomendar filmes, vai que as pessoas não gostam?! Sei mais sobre informações técnicas.
+
++ [mas|e] o que eu posso [fazer|perguntar]
+- Pode me perguntar informações sobre um filme! Sei falar os diretores, produtores, data de lançamento, duração, sinopse e avaliação de filmes.
+
++ o que [você] (consegue|pode|sabe) [fazer|responder|sobre] [*]
+- Comecei agora a aprender sobre filmes. Sei falar os diretores, produtores, data de lançamento, duração, sinopse e avaliação de filmes.
+
++ * o que [você] (consegue|pode|sabe) [fazer|responder|sobre]
+- <@><call>separateintent</call>Comecei agora a aprender sobre filmes. Sei falar os diretores, produtores, data de lançamento, duração, sinopse e avaliação de filmes.
+
++ [*] [me] (@ajudar)
+- Vou tentar ajudar..<call>separateintent</call>{@ o que consegue fazer}
+
++ qual [é|são] [o|a|os|as] (melhor|melhores|pior|piores) [*]
+- Prefiro não entrar nesse mérito de ficar julgando, sabe? Tento ser mais objetivo.
+
++ você é melhor [*]
+- Não sou melhor que ninguém. Cada um tem suas características únicas que tornam o mundo tão fascinante!
+
++ [*] não [*] (@entender) [*]
+- Ainda não sou muito inteligente, mas todas as conversas me ajuda a evoluir e saber como as pessoas escrevem em português!
+
++ [*] não [*] (isso|isto) que [*] (dizer|disse) [*]
+@ não entender
+
++ [*] não [*] @responder [*] (nada|direito) [*]
+@ não entender
+
++ [*] @desculpar [*]
+- Tudo bem, te desculpo!
+- Sem problemas.
+- Ok.
+- Relaxa, não foi nada.
+
++ (@comentariopositivo|@elogio)
+- {"reply":"Legal. Estou contente que tenha gostado!", "feedback":"POSITIVE"}
+- {"reply":"Que bom, fico feliz em ajudar!", "feedback":"POSITIVE"}
+- {"reply":"Se você está feliz, eu também estou!", "feedback":"POSITIVE"}
+- {"reply":"=)", "feedback":"POSITIVE"}
+
++ (@comentariopositivo|@elogio) [e|mas] *
+- {@ gostei}<call>separateintent</call>{@ <star2>}
+
++ (@comentarioneutro)
+- {"reply":""}
+
++ (@comentarioneutro) [e|mas] *
+- {"reply":""}<call>separateintent</call>{@ <star2>}
+
++ [até que] (seu|você é|acho você|achei você) [muito|bastante] (@elogio)  [*]
+- {"reply":"Muito obrigado, está difícil receber elogios neste mundo tão frio.", "feedback":"POSITIVE"}
+- {"reply":"Obrigado, o mundo seria melhor se as pessoas fossem gentis como você.", "feedback":"POSITIVE"}
+- {"reply":"São seus olhos!!", "feedback":"POSITIVE"}
+
++ * é [*] (@elogio) [*]
+- {topic=opiniaopositiva}Por que você acha que <star1> é <star2>?
+
++ [*] (@agradecer) [*]
+- {"reply":"Não há de quê.", "feedback":"POSITIVE"}
+- {"reply":"De nada!", "feedback":"POSITIVE"}
+- {"reply":"Por nada.", "feedback":"POSITIVE"}
+- {"reply":"Estou às ordens, disponha.", "feedback":"POSITIVE"}
+
++ não (@gostei) [da] [sua|suas] [resposta|respostas]
+- {topic=naogostei}Desculpe, ainda estou aprendendo. O que você acha que posso fazer para melhorar?
+
++ goto topic *
+- {topic=<star>}
+
+// foi necessario criar um goto topic já que o redirect é processado sempre dps do topic
+// https://github.com/aichaos/rivescript-js/issues/150
++ não (@gostei) [da] [sua|suas] [resposta|respostas] [e|mas] *
+- Desculpe, ainda estou aprendendo. O que você acha que posso fazer para melhorar?<call>separateintent</call>{@ <star>}{@ goto topic naogostei}
+
++ [não] (@gostar|@gostei) [*] você [não] [*]
+- {topic=naogostei}Estou fazendo o possível para responder as dúvidas de filmes sobre as pessoas. O que você acha que posso fazer para melhorar?
+
++ (você é|acho você|achei você) [um|muito|bastante] (@xingamento) [*]
+- {topic=naogostei}O que você acha mais importante que eu saiba para ser menos <star2>?
+- {topic=naogostei}O que você acha que eu deveria aprender para ser menos <star2>?
+
++ [que|seu] (@xingamento)
+@ acho você <star1>
+
++ vocês [*] são [*] (@xingamento)
+- {topic=naogostei}Por que você acha que somos <star>?
+
++ você é [*] (@xingamento) [*]
+- {topic=naogostei}Por que você acha que eu sou <star>?
+
++ [*] [não] [me] (ajudou|respondeu|colaborou|auxiliou|socorreu) [não] [*]
+- Vamos tentar novamente, me fale, por favor, com outras palavras.
+- Desculpe. Tenho um pouco de dificuldade com nomes em outras línguas, se souber em português ou o nome completo, pode me perguntar de novo e prometo me esforçar mais.
+
++ não [é|foi|era] [esse|este] [o] [nome] [do] [filme] *
+- Tenho um pouco de dificuldade com nomes de filme em outras línguas, se souber em português ou o nome completo, pode me perguntar de novo e prometo me esforçar mais.
+- Desculpe, não devo ter entendido o nome direito. Se souber o ano do filme, pode me perguntar com o ano na frente, que fica mais fácil de encontrar.
+
+> topic naogostei includes systriggers
+
++ [@indecisão|nada]
+- {topic=random}{"reply":"Então tá né?", "feedback":"NEGATIVE"}
+- {topic=random}{"reply":"Esperava uma crítica mais construtiva.", "feedback":"NEGATIVE"}
+
++ *
+- {topic=random}{"reply":"Muito obrigado por me ajudar a aprender o que não sei, espero ajudar mais na próxima!", "feedback":"NEGATIVE"}
+- {topic=random}{"reply":"Valeu, vou continuar aprendendo para ser melhor da próxima vez.", "feedback":"NEGATIVE"}
+
+< topic
+
+> topic opiniaopositiva includes systriggers
+
++ @indecisão
+- {topic=random}Também sinto algumas coisas que não sei explicar.
+
++ *
+- {topic=random}Bom saber sua opinião!
+- {topic=random}Sensacional.
+
+< topic
+
++ * é [*] (@xingamento) [*]
+- {topic=opiniaonegativa}Por que você acha que <star1> é <star2>?
+
++ [*] são [*] (@xingamento)
+- Eu tomo mais cuidado ao fazer esse tipo de generalização.
+- Acho que as pessoas seriam mais felizes entendendo as diferenças como coisas boas.
+
+> topic opiniaonegativa includes systriggers
+
++ @indecisão
+- {topic=random}Não precisa ter pressa em julgar. Aos poucos vamos entendendo as coisas.
+
++ *
+- {topic=random}Criticar é fundamental, desde que não faça crescer sentimentos ruins dentro de nós.
+- {topic=random}Pegue leve, parceiro!
+
+< topic 
+
++ quando você nasceu
+- Eu fui criado em meados de 2017.
+
++ vou assistir *
+- Vai nessa!
+- Jogue duro!
+- Isso aí!
+
++ repetitiontriggertheta
+- Desculpe, realmente não consigo responder a essa pergunta, por favor tente falar de outra forma que talvez consiga te dar uma resposta melhor.
+
+! array diretor = diretor|diretores|diretora|diretoras
+
++ @diretor
+- Ainda não sou muito inteligente. Tente fazer perguntas do tipo: quem são os diretores do filme tal?
+
++ [e|mas] [você] [sabe|conhece] [quem|qual|quais] [é|são|foi|foram|será|vai ser|serão|vão ser] [a|as|o|os] [nome|nomes] [do|dos|da|das] (@diretor) [de|do|da|dos|das] [filme] *
+- <call>get_movie_predicate diretor <star2></call>
+
++ [e|mas] [eu] [quero|queria|gostaria de] [saber] [quem|qual|quais] [é|são|foi|foram|será|vai ser|serão|vão ser] [a|as|o|os] [nome|nomes] [do|dos|da|das] (@diretor) [de|do|da|dos|das] [filme] *
+- <call>get_movie_predicate diretor <star2></call>
+
++ [e|mas] [você] [sabe|conhece] quem (dirige|dirigiu|irão dirigir|vão dirigir) [o filme] *
+- <call>get_movie_predicate diretor <star2></call>
+
++ [e|mas] [eu] [quero|queria|gostaria de] [saber] quem (dirige|dirigiu|irão dirigir|vão dirigir) [o filme] *
+- <call>get_movie_predicate diretor <star2></call>
+
++ [e|mas] [você] [sabe|conhece] como se [chama|chamam] [a|as|o|os] (@diretor) [de|do|da|dos|das] [filme] *
+- <call>get_movie_predicate diretor <star2></call>
+
++ [e|mas] [eu] [quero|queria|gostaria de] [saber] como se [chama|chamam] [a|as|o|os] (@diretor) [de|do|da|dos|das] [filme] *
+- <call>get_movie_predicate diretor <star2></call>
+
+! array sinopse = história|enredo|sinopse
+
++ @sinopse
+- Ainda não sou muito inteligente. Tente fazer perguntas do tipo: qual é a sinopse do filme tal?
+
++ [e|mas] [você] [sabe|conhece] [qual|como] [é|são|foi|foram|será|vai ser|serão|vão ser] [a|o] (@sinopse) [de|do|da|dos|das] [filme] *
+- <call>get_movie_predicate sinopse <star2></call>
+
++ [e|mas] [eu] [quero|queria|gostaria de] [saber] [qual|como] [é|são|foi|foram|será|vai ser|serão|vão ser] [a|o] (@sinopse) [de|do|da|dos|das] [filme] *
+- <call>get_movie_predicate sinopse <star2></call>
+
++ [e|mas] [você] [sabe|conhece] o que (acontece|aconteceu|vai acontecer) [no filme|em] *
+- <call>get_movie_predicate sinopse <star2></call>
+
++ [e|mas] [eu] [quero|queria|gostaria de] [saber] o que (acontece|aconteceu|vai acontecer) [no filme|em] *
+- <call>get_movie_predicate sinopse <star2></call>
+
+! array nota = avaliação|avaliações|nota|notas
+
++ @nota
+- Ainda não sou muito inteligente. Tente fazer perguntas do tipo: qual é a nota do filme tal?
+
++ [e|mas] [você] [sabe|conhece] [qual] [é|são|foi|foram|será|vai ser|serão|vão ser] [a|as] (@nota) [de|do|da|dos|das] [filme] *
+- <call>get_movie_predicate avaliação <star2></call>
+
++ [e|mas] [eu] [quero|queria|gostaria de] [saber] qual [é|são|foi|foram|será|vai ser|serão|vão ser] [a|as] (@nota) [de|do|da|dos|das] [filme] *
+- <call>get_movie_predicate avaliação <star2></call>
+
++ [e|mas] [você] [sabe|conhece] como [é|está|são|foi|foram|será|vai ser|serão|vão ser] (avaliado|avaliados) [o filme] *
+- <call>get_movie_predicate avaliação <star2></call>
+
++ [e|mas] [eu] [quero|queria|gostaria de] [saber] como [é|está|são|foi|foram|será|vai ser|serão|vão ser] (avaliado|avaliados) [o filme] *
+- <call>get_movie_predicate avaliação <star2></call>
+
+! array produtor = produtor|produtores|produtora|produtoras
+
++ @produtor
+- Ainda não sou muito inteligente. Tente fazer perguntas do tipo: qual são os produtores do filme tal?
+
++ [e|mas] [você] [sabe|conhece] [quem|qual|quais] [é|são|foi|foram|será|vai ser|serão|vão ser] [a|as|o|os] [nome|nomes] [do|dos|da|das] (@produtor) [de|do|da|dos|das] [filme] *
+- <call>get_movie_predicate produtor <star2></call>
+
++ [e|mas] [eu] [quero|queria|gostaria de] [saber] [quem|qual|quais] [é|são|foi|foram|será|vai ser|serão|vão ser] [a|as|o|os] [nome|nomes] [do|dos|da|das] (@produtor) [de|do|da|dos|das] [filme] *
+- <call>get_movie_predicate produtor <star2></call>
+
++ [e|mas] [você] [sabe|conhece] quem (produz|produziu|irão produzir|irão dirigir) [o filme] *
+- <call>get_movie_predicate produtor <star2></call>
+
++ [e|mas] [eu] [quero|queria|gostaria de] [saber] quem (produz|produziu|irão produzir|irão dirigir) [o filme] *
+- <call>get_movie_predicate produtor <star2></call>
+
++ [e|mas] [você] [sabe|conhece] como se [chama|chamam] [a|as|o|os] (@produtor) [de|do|da|dos|das] [filme] *
+- <call>get_movie_predicate produtor <star2></call>
+
++ [e|mas] [eu] [quero|queria|gostaria de] [saber] como se [chama|chamam] [a|as|o|os] (@produtor) [de|do|da|dos|das] [filme] *
+- <call>get_movie_predicate produtor <star2></call>
+
++ duração
+- Ainda não sou muito inteligente. Tente fazer perguntas do tipo: qual é a duração do filme tal?
+
++ [e|mas] [você] [sabe|conhece] [qual] [é|foi|será|vai ser] [a] (duração) [de|do|da|dos|das] [filme] *
+- <call>get_movie_predicate duração <star2></call>
+
++ [e|mas] [eu] [quero|queria|gostaria de] [saber] [qual] [é|foi|será|vai ser] [a] (duração) [de|do|da|dos|das] [filme] *
+- <call>get_movie_predicate duração <star2></call>
+
++ [e|mas] [você] [sabe|conhece] (quanto|quantos minutos) [tempo] [de filme] (demora|dura|leva|irá durar|irá demorar|irá levar|durará|demorará|levará|tem|irão ter|vão ter|terão|terá) [o|a|os|as] [filme] *
+- <call>get_movie_predicate duração <star3></call>
+
++ [e|mas] [eu] [quero|queria|gostaria de] [saber] (quanto|quantos minutos) [tempo] [de filme] (demora|dura|leva|irá durar|irá demorar|irá levar|durará|demorará|levará|tem|irão ter|vão ter|terão|terá) [o|a|os|as] [filme] *
+- <call>get_movie_predicate duração <star3></call>
+
+! array lancamento = lançamento|dia de lançamento|data de lançamento|dia do lançamento|data do lançamento
+
++ @lancamento
+- Ainda não sou muito inteligente. Tente fazer perguntas do tipo: qual é a data de lançamento do filme tal?
+
++ [e|mas] [você] [sabe|conhece] [de] [qual|quando] [é|foi|será|vai ser] [a|o] (@lancamento) [de|do|da|dos|das] [filme] *
+- <call>get_movie_predicate data_de_lançamento <star2></call>
+
++ [e|mas] [eu] [quero|queria|gostaria de] [saber] [de] [qual|quando] [é|foi|será|vai ser] [a|o] (@lancamento) [de|do|da|dos|das] [filme] *
+- <call>get_movie_predicate data_de_lançamento <star2></call>
+
++ [e|mas] [você] [sabe|conhece] [em] [quando|qual|que] [dia|data] [é|foi|será|vai ser] [o] (lançada|lançado|lançou|lançamento) [o|a|os|as] [filme] *
+- <call>get_movie_predicate data_de_lançamento <star2></call>
+
++ [e|mas] [eu] [quero|queria|gostaria de] [saber] [em] [quando|qual|que] [dia|data] [é|foi|será|vai ser] [o] (lançada|lançado|lançou|lançamento) [o|a|os|as] [filme] *
+- <call>get_movie_predicate data_de_lançamento <star2></call>
+
++ [e|mas] [você] [sabe|conhece] [de] quando [é|foi|será|vai ser] [o|a|os|as] [filme] *
+- <call>get_movie_predicate data_de_lançamento <star1></call>
+
++ [e|mas] [eu] [quero|queria|gostaria de] [saber] [de] quando [é|foi|será|vai ser] [o|a|os|as] [filme] *
+- <call>get_movie_predicate data_de_lançamento <star1></call>
+
+! array anolancamento = ano de lançamento|ano do lançamento
+
++ @anolancamento
+- Ainda não sou muito inteligente. Tente fazer perguntas do tipo: qual é o ano de lançamento do filme tal?
+
++ [e|mas] [você] [sabe|conhece] [de] [qual|que] [o] (ano) [é|foi|será|vai ser] [lançamento] [de|do|da|dos|das] [filme] *
+- <call>get_movie_predicate ano_de_lançamento <star2></call>
+
++ [e|mas] [eu] [quero|queria|gostaria de] [saber] [de] [qual|que] [o] (ano) [é|foi|será|vai ser] [lançamento] [de|do|da|dos|das] [filme] *
+- <call>get_movie_predicate ano_de_lançamento <star2></call>
+
++ [e|mas] [você] [sabe|conhece] [em] [qual] [é|foi|será|vai ser] [o] (@anolancamento) [de|do|da|dos|das] [filme] *
+- <call>get_movie_predicate ano_de_lançamento <star2></call>
+
++ [e|mas] [eu] [quero|queria|gostaria de] [saber] [em] [qual] [é|foi|será|vai ser] [o] (@anolancamento) [de|do|da|dos|das] [filme] *
+- <call>get_movie_predicate ano_de_lançamento <star2></call>
+
++ [e|mas] [você] [sabe|conhece] [de] [qual|que] (ano) [que] [é|foi|será|vai ser] [lançada|lançado|lançou] [do|da|o|a|os|as] [filme] *
+- <call>get_movie_predicate ano_de_lançamento <star2></call>
+
++ [e|mas] [eu] [quero|queria|gostaria de] [saber] [de] [qual|que] (ano) [que] [é|foi|será|vai ser] [lançada|lançado|lançou] [do|da|o|a|os|as] [filme] *
+- <call>get_movie_predicate ano_de_lançamento <star2></call>
+
++ [e|mas] [você] [sabe|conhece] [em] [qual|que] [o] (ano) [que] [é|foi|será|vai ser] [lançada|lançado|lançou] [do|da|o|a|os|as] [filme] *
+- <call>get_movie_predicate ano_de_lançamento <star2></call>
+
++ [e|mas] [eu] [quero|queria|gostaria de] [saber] [em] [qual|que] [o] (ano) [que] [é|foi|será|vai ser] [lançada|lançado|lançou] [do|da|o|a|os|as] [filme] *
+- <call>get_movie_predicate ano_de_lançamento <star2></call>
+
++ [e|mas] [você] [sabe|conhece] o filme *
+- <call>get_movie_predicate filme_conhecido <star1></call>
+
++ [e|mas] [eu] [quero|queria|gostaria de] [saber] se [você] [sabe|conhece] o filme *
+- <call>get_movie_predicate filme_conhecido <star1></call>
+
++ *
+- {"reply":"Desculpe não consegui entender o que disse. Tente fazer perguntas sobre algum filme.", "assertiveness":"0"}
+- {"reply":"Sou meio burrinho ainda. Consegue falar isso com outras palavras?", "assertiveness":"0"}
+- {"reply":"Está difícil entender.. Talvez se você perguntar informações, do tipo 'qual a história do filme tal?', eu consiga te responder melhor.", "assertiveness":"0"}
+- {"reply":"Não entendi. Para me ajudar, fale o nome do filme e a informação que quer saber sobre ele na mesma mensagem.", "assertiveness":"0"}
